@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Project = require('../model/model.js');
-const PASSWORD = 'IQV4idmtN6JDtjz0';
+require('dotenv').config()
+
+const PASSWORD = process.env.DB_PASSWORD;
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
