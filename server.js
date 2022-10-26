@@ -1,5 +1,5 @@
 const fs = require('fs');
-const express = require("express");
+const express = require('express');
 const app = express();
 // const cors = require('cors');
 // app.use(cors());
@@ -8,7 +8,7 @@ app.use(express.static('public'));
 
 const PORT = 3000;
 
-const {createProject, getProjects, updateProject, deleteProject} = require('./controller/controller.js');
+const {createProject, getProjects, updateProject, deleteProject} = require('./src/controller/controller.js');
 
 // CREATE
 app.post('/create', (req, res) => {
