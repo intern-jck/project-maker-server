@@ -2,19 +2,18 @@ const mongoose = require('mongoose');
 const Project = require('../model/model.js');
 require('dotenv').config()
 
-const PASSWORD = process.env.DB_PASSWORD;
+const MONGODB = process.env.MONGODB;
+const USERNAME = process.env.USERNAME;
+const PASSWORD = process.env.PASSWORD;
+const ENDPOINT = process.env.ENDPOINT;
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-
-const uri = `mongodb+srv://intern:${PASSWORD}@cluster0.tl7g5ow.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `${MONGODB}://${USERNAME}:${PASSWORD}@${ENDPOINT}`;
 
 mongoose.connect(uri)
   .then((data) => (console.log('mongo success!')))
   .catch((error) => (console.log(error)));
 
 // Create a document
-// Returns a promise
-// TODO: Implement pagination.
 const createProject = (projectData) => {
     return Project.create(projectData);
   };

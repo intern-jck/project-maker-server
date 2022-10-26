@@ -1,12 +1,9 @@
-const fs = require('fs');
 const express = require('express');
 const app = express();
-// const cors = require('cors');
-// app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
-
-const PORT = 3000;
+require('dotenv').config()
+const PORT = process.env.PORT;
 
 const {createProject, getProjects, updateProject, deleteProject} = require('./src/controller/controller.js');
 
@@ -18,19 +15,16 @@ app.post('/create', (req, res) => {
     .catch((error) => (console.log('post error', error)));
 });
 
-// READ
+// // READ
 app.get('/projects', (req, res) => {
-  console.log('GETTING PROJECTS');
   getProjects()
   .then((data) => {
-    // console.log('SERVER GOT: ', data)
     res.send(data)
   })
-  .catch((error) => (console.log('get error', error)));
+  .catch((error) => (res.send(error)));
 });
 
-// UPDATE
-// Should be put?
+// // UPDATE
 app.put('/project', (req, res) => {
   // console.log(req.body);
   updateProject(req.body)
